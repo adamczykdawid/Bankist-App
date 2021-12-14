@@ -34,6 +34,7 @@ const account4 = {
 };
 
 const accounts = [account1, account2, account3, account4];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
@@ -80,6 +81,52 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
+const createUserNames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUserNames(accounts);
+// console.log(accounts);
+
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
+// });
+// console.log(movements);
+// console.log(deposits);
+
+// const withdrawals = movements.filter(function (mov) {
+//   return mov < 0;
+// });
+
+// console.log(withdrawals);
+
+//accumulator --> snowball ;)
+// const balance = movements.reduce(function (acc, curr, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + curr;
+// }, 100);
+
+// console.log(balance);
+
+// const eurToUsd = 1.1;
+
+// const movementUSD = movements.map(mov => mov * eurToUsd);
+
+// console.log(movements, movementUSD);
+
 /* 
 Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
 
@@ -96,23 +143,23 @@ TEST DATA 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
 TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
-*/
+// */
 
-function checkDogs(arr1, arr2) {
-  const arr1Mutated = [...arr1];
-  const newArr1 = arr1Mutated.slice(1, -2);
-  console.log(newArr1);
+// function checkDogs(arr1, arr2) {
+//   const arr1Mutated = [...arr1];
+//   const newArr1 = arr1Mutated.slice(1, -2);
+//   console.log(newArr1);
 
-  const bothArr = [...newArr1, ...arr2];
-  console.log(bothArr);
-  bothArr.forEach(function (value, i) {
-    console.log(
-      `Dog number ${i + 1} is ${
-        value <= 3 ? 'still a puppy 🐶' : 'an adult, and is years old'
-      }`
-    );
-  });
-}
+//   const bothArr = [...newArr1, ...arr2];
+//   console.log(bothArr);
+//   bothArr.forEach(function (value, i) {
+//     console.log(
+//       `Dog number ${i + 1} is ${
+//         value <= 3 ? 'still a puppy 🐶' : 'an adult, and is years old'
+//       }`
+//     );
+//   });
+// }
 
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
-checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
