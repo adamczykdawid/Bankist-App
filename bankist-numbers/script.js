@@ -337,14 +337,75 @@ btnSort.addEventListener('click', function (e) {
 // });
 //numeric separators
 
-const diameter = 287_460_000_000;
-console.log(diameter);
+// const diameter = 287_460_000_000;
+// console.log(diameter);
 
-const priceCents = 345_99;
-console.log(priceCents);
+// const priceCents = 345_99;
+// console.log(priceCents);
 
-const transferFee1 = 15_00;
-const transferFee2 = 1_500;
+// const transferFee1 = 15_00;
+// const transferFee2 = 1_500;
 
-console.log(Number('230000'));
-console.log(Number('230_000'));
+// console.log(Number('230000'));
+// console.log(Number('230_000'));
+
+//BigInt
+// console.log(2 ** 53 - 1);
+// console.log(Number.MAX_SAFE_INTEGER);
+
+// console.log(2332423423423423423424234234342n);
+// console.log(BigInt(2332423423423423423424234234342));
+// console.log(typeof 2332423423423423423424234234342n);
+
+// //Operations
+// console.log(10000n + 20000n);
+// console.log(10002323423423442340n + 202342342342344000n);
+
+// const huge = 13223423423423442n;
+// const num = 23;
+
+// console.log(huge * BigInt(num));
+
+// console.log(20n > 15);
+// console.log(20n === 20);
+// console.log(typeof 20n);
+// console.log(20n == '20');
+// console.log(huge + ' is really big');
+
+// //divisions
+// console.log(11n / 3n);
+// console.log(10 / 3);
+
+//Create a date
+// const now = new Date();
+// console.log(now);
+
+// console.log(new Date('Dec 19 2021 14:57:56 GMT'));
+// console.log(new Date('December, 24, 2015'));
+
+// console.log(new Date(account1.movementsDates[0]));
+// console.log(new Date(2037, 10, 19, 15, 23, 5));
+// console.log(new Date(2037, 10, 31));
+// console.log(new Date(0));
+// console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+//working with dates
+
+// const future = new Date(2037, 10, 19, 15, 23);
+// console.log(future);
+// console.log(future.getFullYear());
+// console.log(future.getMonth());
+// console.log(future.getDate());
+// console.log(future.getDay());
+// console.log(future.getHours());
+// console.log(future.getMinutes());
+// console.log(future.getSeconds());
+// console.log(future.toISOString());
+// console.log(future.getTime());
+
+// console.log(new Date(2142253380000));
+
+// console.log(Date.now());
+
+// future.setFullYear(2040);
+// console.log(future);
