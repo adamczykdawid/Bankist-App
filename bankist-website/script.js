@@ -193,7 +193,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 });
 allSections.forEach(function (section) {
   sectionObserver.observe(section);
-  section.classList.add('section--hidden');
+  // section.classList.add('section--hidden');
 });
 //lazy img loading
 const imgTargets = document.querySelectorAll('img[data-src]');
@@ -215,6 +215,88 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+//////slider
+const slider = function () {
+  const slides = document.querySelectorAll('.slide');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
+  let curSlide = 0;
+  const maxSlide = slides.length;
+
+  // functions
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
+
+  const activateDot = function (slide) {
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
+
+    document
+      .querySelector(`.dots__dot[data-slide='${slide}']`)
+      .classList.add('dots__dot--active');
+  };
+
+  slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
+
+  //nextslide
+  const nextSlide = function () {
+    if (curSlide === maxSlide) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+  const init = function () {
+    goToSlide(0);
+    createDots();
+    activateDot(0);
+  };
+  init();
+  //event handlers
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', prevSlide);
+
+  // keyboard movements
+  document.addEventListener('keydown', function (e) {
+    console.log(e);
+    if (e.key === 'ArrowLeft') prevSlide();
+    e.key === 'ArrowRight' && nextSlide();
+  });
+
+  dotContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const { slide } = e.target.dataset;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
+};
+slider();
 //////////////////////////////////////////
 /////////////////LECTURES/////////////////////////
 //////////////////////////////////////////
